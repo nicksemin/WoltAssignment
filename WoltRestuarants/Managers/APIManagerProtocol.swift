@@ -8,7 +8,7 @@
 import Foundation
 
 protocol APIManagerProtocol {
-    func fetchRestuarants(coordinates: Coordinates, completion: @escaping ([Restaurant]) -> Void)
+    func fetchRestaurants(coordinates: Coordinates, completion: @escaping ([Restaurant]) -> Void)
     
     func decodeResponseData(data: Data) throws -> [Restaurant]
     

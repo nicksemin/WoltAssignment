@@ -11,7 +11,8 @@ import XCTest
 final class WoltRestaurantsTests: XCTestCase {
     
     let sampleRestaurant = Restaurant(name: "Sample Name", description: "A sample description", id: UUID().uuidString, imgUrl: "http://www.google.com")
-    let model = RestaurantsModel()
+    let mock = APIManagerMock()
+    let coordinates = Coordinates(latitude: 60.000, longitude: 42.000)
 
     func testRestaurant() throws {
         XCTAssert(sampleRestaurant.isFav == false)
@@ -19,28 +20,11 @@ final class WoltRestaurantsTests: XCTestCase {
         XCTAssert(sampleRestaurant.isFav == true)
     }
     
-    func testModelRequest() throws {
-        model.fetchRestuarants(coordinates: Coordinates(latitude: 60.170187, longitude: 24.930599)) {
-            XCTAssert(self.model.getRestaurants().count == 15)
-        }
-        
-        model.fetchRestuarants(coordinates: Coordinates(latitude: 0.0000, longitude: 0.0000)) {
-            XCTAssert(self.model.getRestaurants().count == 0)
-        }
-    }
+    // TODO: test other manager's methods
     
-    func testModelGetter() throws {
-        var oldRestaurants = [Restaurant]()
-        model.fetchRestuarants(coordinates: Coordinates(latitude: 60.170187, longitude: 24.930599)) {
-            oldRestaurants = self.model.getRestaurants()
-            XCTAssertFalse(!oldRestaurants.isEmpty)
-            XCTAssert(oldRestaurants.count == 15)
-        }
-        
-        model.fetchRestuarants(coordinates: Coordinates(latitude: 60.230187, longitude: 24.890599)) {
-            let newRestaurants = self.model.getRestaurants()
-            
-            XCTAssertFalse(oldRestaurants[3].id == newRestaurants[3].id)
+    func testManagerFetch() throws {
+        mock.fetchRestaurants(coordinates: coordinates) { restaurants in
+            XCTAssert(restaurants.count == 2)
         }
     }
 }
