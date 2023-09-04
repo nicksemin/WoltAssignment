@@ -22,6 +22,7 @@
 		66DF03FA29832762006FA81A /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DF03F929832762006FA81A /* UIImageExtension.swift */; };
 		66E3BF822986E102004E20A2 /* WoltRestaurantsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66E3BF812986E102004E20A2 /* WoltRestaurantsTests.swift */; };
 		66E3BF8929884ECD004E20A2 /* Coordinates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66E3BF8829884ECD004E20A2 /* Coordinates.swift */; };
+		66FF98772AA67E3C008051A5 /* APIManagerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66FF98732AA67B43008051A5 /* APIManagerMock.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +55,7 @@
 		66E3BF812986E102004E20A2 /* WoltRestaurantsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WoltRestaurantsTests.swift; sourceTree = "<group>"; };
 		66E3BF8829884ECD004E20A2 /* Coordinates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinates.swift; sourceTree = "<group>"; };
 		66E3BF8C29886E92004E20A2 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		66FF98732AA67B43008051A5 /* APIManagerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManagerMock.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +80,7 @@
 			isa = PBXGroup;
 			children = (
 				66577A1B2AA6710D008E0E3E /* APIManagerProtocol.swift */,
+				66FF98732AA67B43008051A5 /* APIManagerMock.swift */,
 				66577A1C2AA6710D008E0E3E /* APIManager.swift */,
 			);
 			path = Managers;
@@ -270,6 +273,7 @@
 				66DF03D02976BAFB006FA81A /* AppDelegate.swift in Sources */,
 				66DF03E7297716D5006FA81A /* RestuarantListVC.swift in Sources */,
 				66577A1D2AA6710D008E0E3E /* APIManagerProtocol.swift in Sources */,
+				66FF98772AA67E3C008051A5 /* APIManagerMock.swift in Sources */,
 				66DF03EF2978A19A006FA81A /* Response.swift in Sources */,
 				66DF03FA29832762006FA81A /* UIImageExtension.swift in Sources */,
 				66DF03D22976BAFB006FA81A /* SceneDelegate.swift in Sources */,

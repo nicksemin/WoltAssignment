@@ -8,10 +8,8 @@
 import Foundation
 
 class APIManager: APIManagerProtocol {
-    func fetchRestuarants(coordinates: Coordinates, completion: @escaping ([Restaurant]) -> Void) {
+    func fetchRestaurants(coordinates: Coordinates, completion: @escaping ([Restaurant]) -> Void) {
         // better error handling (including enums for )
-        //let (data, _) = try await URLSession.shared.data(from: endpointURL)
-        
         
         guard let endpointURL = URL(string: "https://restaurant-api.wolt.com/v1/pages/restaurants?lat=\(coordinates.latitude)&lon=\(coordinates.longitude)") else {
             return

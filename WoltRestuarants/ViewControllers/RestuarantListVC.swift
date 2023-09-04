@@ -79,7 +79,7 @@ extension RestuarantListVC : CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let locValue: CLLocationCoordinate2D = manager.location?.coordinate else { return }
         // coordinates.latitude = locValue.latitude; coordinates.longitude = locValue.longitude
-        apiManager.fetchRestuarants(coordinates: Coordinates(latitude: locValue.latitude, longitude: locValue.longitude)) { [weak self] restaurants in
+        apiManager.fetchRestaurants(coordinates: Coordinates(latitude: locValue.latitude, longitude: locValue.longitude)) { [weak self] restaurants in
             self?.restaurants = restaurants
             self?.tableView.reloadData()
             self?.activityIndicatorView.stopAnimating()
