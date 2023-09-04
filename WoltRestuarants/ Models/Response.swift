@@ -12,7 +12,7 @@ import Foundation
 struct Response: Codable {
     let created: Created
     let expiresInSeconds: Int
-    let filtering: ResponseFiltering
+    let filtering: ResponseFiltering?
     let name, pageTitle: String
     let sections: [Section]
     let showLargeTitle, showMap: Bool
@@ -68,10 +68,10 @@ struct Section: Codable {
 struct Item: Codable {
     let description: String?
     let image: Image
-    let link: Link
+    let link: Link?
     let quantity: Int?
     let quantityStr: String?
-    let template: String
+    let template: String?
     let title, trackID: String
     let filtering: ItemFiltering?
     let sorting: ItemSorting?
@@ -134,27 +134,27 @@ struct Sortable: Codable {
 
 // MARK: - Venue
 struct Venue: Codable {
-    let address: String
-    let badges: [Badge]
-    let city: String
-    let country: String
-    let currency: String
-    let delivers: Bool
-    let deliveryPrice: String
-    let deliveryPriceHighlight: Bool
-    let deliveryPriceInt, estimate: Int
-    let estimateRange: String
-    let franchise, id: String
-    let location: [Double]
-    let name: String
-    let online: Bool
-    let priceRange: Int
+    let address: String?
+    let badges: [Badge]?
+    let city: String?
+    let country: String?
+    let currency: String?
+    let delivers: Bool?
+    let deliveryPrice: String?
+    let deliveryPriceHighlight: Bool?
+    let deliveryPriceInt, estimate: Int?
+    let estimateRange: String?
+    let franchise, id: String?
+    let location: [Double]?
+    let name: String?
+    let online: Bool?
+    let priceRange: Int?
     let productLine: String?
     let rating: Rating?
-    let shortDescription: String
-    let showWoltPlus: Bool
-    let slug: String
-    let tags: [String]
+    let shortDescription: String?
+    let showWoltPlus: Bool?
+    let slug: String?
+    let tags: [String]?
     let icwDuctLine: String?
 
     enum CodingKeys: String, CodingKey {

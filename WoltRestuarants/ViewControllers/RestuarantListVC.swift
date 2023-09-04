@@ -11,9 +11,6 @@ import CoreLocation
 class RestuarantListVC: UIViewController {
     
     init() {
-        self.model = RestaurantsModel()
-        self.restaurants = model.getRestaurants()
-        
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -21,24 +18,10 @@ class RestuarantListVC: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    var model: RestaurantsModel
-    var restaurants: [Restaurant]
+    var apiManager = APIManager()
+    var restaurants = [Restaurant]()
     
     let locationManager = CLLocationManager()
-    
-    var newRequestCooldown = Date()
-    
-    /// Computed property to retry fetch request if the
-    var coordinates: Coordinates = Coordinates(latitude: 0.000000, longitude: 0.000000) {
-        didSet {
-            if coordinates != oldValue  {
-                model.fetchRestuarants(coordinates: coordinates) {
-                    self.tableView.reloadData()
-                }
-                newRequestCooldown = Date()
-            }
-        }
-    }
     
     struct Cells {
         static let restuarantCell = "RestuarantCell"
@@ -54,11 +37,6 @@ class RestuarantListVC: UIViewController {
         setUpLocationManegr()
         
         tableView.backgroundView = activityIndicatorView
-        
-        model.fetchRestuarants(coordinates: coordinates) {
-            self.tableView.reloadData()
-            self.activityIndicatorView.stopAnimating()
-        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -86,5 +64,25 @@ class RestuarantListVC: UIViewController {
     func setTableViewDelegates() {
         tableView.delegate = self
         tableView.dataSource = self
+    }
+}
+
+/// Extension to fetch coordinates using CoreLocation
+extension RestuarantListVC : CLLocationManagerDelegate {
+    func setUpLocationManegr() {
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.startUpdatingLocation()
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        guard let locValue: CLLocationCoordinate2D = manager.location?.coordinate else { return }
+        // coordinates.latitude = locValue.latitude; coordinates.longitude = locValue.longitude
+        apiManager.fetchRestuarants(coordinates: Coordinates(latitude: locValue.latitude, longitude: locValue.longitude)) { [weak self] restaurants in
+            self?.restaurants = restaurants
+            self?.tableView.reloadData()
+            self?.activityIndicatorView.stopAnimating()
+        }
     }
 }
